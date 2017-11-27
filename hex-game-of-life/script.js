@@ -13,7 +13,7 @@ var randomButton = document.querySelector("#randomButton");
 var backgroundColor = "blue";
 var onColor = "yellow";
 var offColor = "white";
-var sideLength = 10;
+var sideLength = canvas.width / 300;
 var layers = [];
 
 
