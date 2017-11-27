@@ -8,7 +8,7 @@ var ctx = canvas.getContext("2d");
 var backgroundColor = "blue";
 var onColor = "yellow";
 var offColor = "white";
-var sideLength = 10;
+var sideLength = 15;
 var layers = new Array();
 
 for (var i = 0; i * sideLength * Math.sqrt(3) / 2 < canvas.height + sideLength; i++) {
@@ -23,6 +23,45 @@ for (var i = 0; i * sideLength * Math.sqrt(3) / 2 < canvas.height + sideLength; 
 
     layers.push(layer);
 }
+
+canvas.addEventListener("click", function (evt) {
+    var rect = this.getBoundingClientRect();
+    var mouseX = evt.clientX - rect.left;
+    var mouseY = evt.clientY - rect.top;
+    var mousePoint = new Point(mouseX, mouseY);
+    var minDist = 9999;
+    var closestHex = layers[0][0];
+
+    for (var n in layers) {
+        var layer = layers[n];
+        for (var i in layer) {
+            var hex = layer[i];
+            var dist = distance(hex.center, mousePoint);
+            closestHex = (dist < minDist) ? hex : closestHex;
+            minDist = (dist < minDist) ? dist : minDist;
+        }
+        if (minDist < closestHex.sideLength) {
+            break;
+        }
+
+    }
+
+    if (closestHex.state === true) {
+        closestHex.state = false;
+        closestHex.nextState = false;
+        console.log("closed");
+    } else {
+        closestHex.state = true;
+        closestHex.nextState = true;
+        console.log("opened");
+    }
+
+    console.log(closestHex.center.x);
+    console.log(closestHex.center.y);
+
+
+
+});
 
 draw();
 setInterval(function step() {

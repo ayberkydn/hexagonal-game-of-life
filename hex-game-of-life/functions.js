@@ -3,13 +3,19 @@ function Point(x, y) {
     this.y = y;
 }
 
+function distance(pointA, pointB) {
+    var xDist = pointA.x - pointB.x;
+    var yDist = pointA.y - pointB.y;
+    return Math.sqrt(Math.pow(xDist, 2) + Math.pow(yDist, 2));
+}
+
 function Hexagon(center, sideLength) {
     this.center = center;
     this.sideLength = sideLength;
     if (Math.random() > 0.5) {
-        this.status = true;
+        this.state = true;
     } else {
-        this.status = false;
+        this.state = false;
     }
 }
 
@@ -34,7 +40,7 @@ function fillCanvas(color) {
 function drawHex(hexagon, color) {
     var center = hexagon.center;
     var sideLength = hexagon.sideLength * 28 / 30;
-    if (hexagon.status === true) {
+    if (hexagon.state === true) {
         ctx.fillStyle = "yellow";
     } else {
         ctx.fillStyle = "black";
@@ -80,15 +86,15 @@ function compute() {
             //drawHex(currentHex, "blue");
             for (j = 0; j < neighbors.length; j++) {
 
-                if (neighbors[j].status === true) {
+                if (neighbors[j].state === true) {
                     aliveNeighbors++;
                 }
             }
-            if ((live.includes(aliveNeighbors) && currentHex.status === true) ||
-                (born.includes(aliveNeighbors) && currentHex.status === false)) {
-                currentHex.nextStatus = true;
+            if ((live.includes(aliveNeighbors) && currentHex.state === true) ||
+                (born.includes(aliveNeighbors) && currentHex.state === false)) {
+                currentHex.nextState = true;
             } else {
-                currentHex.nextStatus = false;
+                currentHex.nextState = false;
             }
         }
     }
@@ -96,7 +102,7 @@ function compute() {
 
     for (var n = 0; n < numOfLayers - 0; n++) {
         for (var i = 0; i < layerLength - 0; i++) {
-            layers[n][i].status = layers[n][i].nextStatus;
+            layers[n][i].state = layers[n][i].nextState;
         }
     }
 }
