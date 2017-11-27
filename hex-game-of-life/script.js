@@ -1,8 +1,11 @@
 "use strict";
 var canvas = document.querySelector("#myCanvas");
 var body = document.querySelector("body");
+var isMobile = navigator.userAgent.match(/Android/i) ||
+    navigator.userAgent.match(/iPhone/i) ||
+    navigator.userAgent.match(/iPad/)
 body.padding = 0;
-canvas.height = window.innerHeight * 13 / 16;
+canvas.height = window.innerHeight * 10 / 16;
 canvas.width = window.innerWidth;
 var ctx = canvas.getContext("2d");
 var resumeButton = document.querySelector("#resumeButton");
@@ -13,7 +16,7 @@ var randomButton = document.querySelector("#randomButton");
 var backgroundColor = "blue";
 var onColor = "yellow";
 var offColor = "white";
-var sideLength = canvas.width / 300;
+var sideLength = isMobile ? canvas.width / 100 : canvas.width / 300;
 var layers = [];
 
 
