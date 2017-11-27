@@ -19,6 +19,36 @@ function Hexagon(center, sideLength) {
     }
 }
 
+function randomInitialize() {
+    clearCells();
+    for (var n = Math.round(layers.length * 1 / 4); n < layers.length * 3 / 4; n++) {
+        var layer = layers[n];
+        for (var i = Math.round(layer.length * 1 / 4); i < layer.length * 3 / 4; i++) {
+            var hex = layer[i];
+            hex.state = (Math.random() > 0.5) ? true : false;
+            hex.nextState = hex.state;
+        }
+    }
+    draw();
+}
+
+function clearCells() {
+    for (var n in layers) {
+        var layer = layers[n];
+        for (var i in layer) {
+            var hex = layer[i];
+            hex.state = false;
+            hex.nextState = hex.state;
+        }
+    }
+    draw();
+}
+
+function step() {
+    draw();
+    compute();
+}
+
 function mod(n, m) {
     if (n < 0) {
         return mod(n + m, m);
@@ -73,8 +103,8 @@ function compute() {
         for (var i = 0; i < layerLength; i++) {
             var currentHex = currentLayer[i];
             var neighbors = [];
-            var live = [3, 4]; //how many alive neigbors means live
-            var born = [2]; //how many alive neighbors means born
+            var live = [2, 3]; //how many alive neigbors means live
+            var born = [3, 4]; //how many alive neighbors means born
             var aliveNeighbors = 0;
             neighbors.push(layers[mod(n - 2, numOfLayers)][mod(i, layerLength)]);
             neighbors.push(layers[mod(n + 2, numOfLayers)][mod(i, layerLength)]);

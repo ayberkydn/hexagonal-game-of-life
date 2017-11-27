@@ -2,17 +2,24 @@
 var canvas = document.querySelector("#myCanvas");
 var body = document.querySelector("body");
 body.padding = 0;
-canvas.height = window.innerHeight - 100;
+canvas.height = window.innerHeight * 13 / 16;
 canvas.width = window.innerWidth;
 var ctx = canvas.getContext("2d");
+var resumeButton = document.querySelector("#resumeButton");
+var pauseButton = document.querySelector("#pauseButton");
+var nextButton = document.querySelector("#nextButton");
+var clearButton = document.querySelector("#clearButton");
+var randomButton = document.querySelector("#randomButton");
 var backgroundColor = "blue";
 var onColor = "yellow";
 var offColor = "white";
-var sideLength = 15;
-var layers = new Array();
+var sideLength = 10;
+var layers = [];
 
+
+//initialize layers
 for (var i = 0; i * sideLength * Math.sqrt(3) / 2 < canvas.height + sideLength; i++) {
-    var layer = new Array();
+    var layer = [];
     for (var n = 0; n * sideLength * 3 < canvas.width + sideLength; n++) {
         var pointX = n * sideLength * 3 + sideLength * 1.5 * (i % 2);
         var pointY = i * sideLength * Math.sqrt(3) / 2;
@@ -43,31 +50,41 @@ canvas.addEventListener("click", function (evt) {
         if (minDist < closestHex.sideLength) {
             break;
         }
-
     }
-
     if (closestHex.state === true) {
         closestHex.state = false;
-        closestHex.nextState = false;
+        closestHex.nextState = closestHex.state;
         console.log("closed");
     } else {
         closestHex.state = true;
-        closestHex.nextState = true;
+        closestHex.nextState = closestHex.state;
         console.log("opened");
     }
-
-    console.log(closestHex.center.x);
-    console.log(closestHex.center.y);
-
-
+    drawHex(closestHex);
 
 });
 
 draw();
-setInterval(function step() {
-    draw();
-    compute();
-}, 100);
 
+//this is used as both id of step interval and resume flag
+var resuming = setInterval(step, 80);
+
+
+pauseButton.addEventListener("click", function () {
+    if (resuming) {
+        clearInterval(resuming);
+        resuming = 0;
+    }
+});
+
+resumeButton.addEventListener("click", function () {
+    if (!resuming) resuming = setInterval(step, 100);
+});
+
+nextButton.addEventListener("click", step);
+
+clearButton.addEventListener("click", clearCells);
+
+randomButton.addEventListener("click", randomInitialize);
 
 console.log(layers);
