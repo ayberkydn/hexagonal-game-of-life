@@ -5,9 +5,25 @@ var isMobile = navigator.userAgent.match(/Android/i) ||
     navigator.userAgent.match(/iPhone/i) ||
     navigator.userAgent.match(/iPad/)
 body.padding = 0;
-canvas.height = window.innerHeight * 10 / 16;
+canvas.height = window.innerHeight * 10 / 17;
 canvas.width = window.innerWidth;
 var ctx = canvas.getContext("2d");
+
+
+var checkboxes = {
+    born: [],
+    survive: []
+};
+
+for (var n = 0; n < 7; n++) {
+    var surviveId = "survive" + n;
+    var bornId = "born" + n;
+    checkboxes.survive.push(document.getElementById(surviveId));
+    checkboxes.born.push(document.getElementById(bornId));
+}
+
+
+
 var resumeButton = document.querySelector("#resumeButton");
 var pauseButton = document.querySelector("#pauseButton");
 var nextButton = document.querySelector("#nextButton");
@@ -70,7 +86,7 @@ canvas.addEventListener("click", function (evt) {
 draw();
 
 //this is used as both id of step interval and resume flag
-var resuming = setInterval(step, 80);
+var resuming = setInterval(step, 30);
 
 
 pauseButton.addEventListener("click", function () {

@@ -98,14 +98,26 @@ function drawLayer(layer, color) {
 function compute() {
     numOfLayers = layers.length;
     layerLength = layers[0].length;
+    var rules = {
+        born: [],
+        survive: []
+    }
+    for (var n = 0; n < 7; n++) {
+        if (checkboxes.born[n].checked) {
+            rules.born.push(n);
+        }
+        if (checkboxes.survive[n].checked) {
+            rules.survive.push(n);
+        }
+    }
     for (var n = 0; n < numOfLayers; n++) {
         currentLayer = layers[n];
         for (var i = 0; i < layerLength; i++) {
             var currentHex = currentLayer[i];
             var neighbors = [];
-            var live = [2, 3]; //how many alive neigbors means live
-            var born = [3, 4]; //how many alive neighbors means born
             var aliveNeighbors = 0;
+
+
             neighbors.push(layers[mod(n - 2, numOfLayers)][mod(i, layerLength)]);
             neighbors.push(layers[mod(n + 2, numOfLayers)][mod(i, layerLength)]);
             neighbors.push(layers[mod(n - 1, numOfLayers)][mod(i - 1 + (n % 2), layerLength)]);
@@ -120,8 +132,8 @@ function compute() {
                     aliveNeighbors++;
                 }
             }
-            if ((live.includes(aliveNeighbors) && currentHex.state === true) ||
-                (born.includes(aliveNeighbors) && currentHex.state === false)) {
+            if ((rules.survive.includes(aliveNeighbors) && currentHex.state === true) ||
+                (rules.born.includes(aliveNeighbors) && currentHex.state === false)) {
                 currentHex.nextState = true;
             } else {
                 currentHex.nextState = false;
