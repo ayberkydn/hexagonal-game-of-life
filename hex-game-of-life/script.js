@@ -29,9 +29,9 @@ var pauseButton = document.querySelector("#pauseButton");
 var nextButton = document.querySelector("#nextButton");
 var clearButton = document.querySelector("#clearButton");
 var randomButton = document.querySelector("#randomButton");
-var backgroundColor = "blue";
+var gridColor = "blue";
 var onColor = "yellow";
-var offColor = "white";
+var offColor = "black";
 var sideLength = isMobile ? canvas.width / 100 : canvas.width / 300;
 var layers = [];
 

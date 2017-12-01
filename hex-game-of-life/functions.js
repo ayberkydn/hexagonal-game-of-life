@@ -12,7 +12,7 @@ function distance(pointA, pointB) {
 function Hexagon(center, sideLength) {
     this.center = center;
     this.sideLength = sideLength;
-    if (Math.random() > 0.5) {
+    if (Math.random() > 0.8) {
         this.state = true;
     } else {
         this.state = false;
@@ -21,11 +21,11 @@ function Hexagon(center, sideLength) {
 
 function randomInitialize() {
     clearCells();
-    for (var n = Math.round(layers.length * 1 / 4); n < layers.length * 3 / 4; n++) {
+    for (var n = 0; n < layers.length; n++) {
         var layer = layers[n];
-        for (var i = Math.round(layer.length * 1 / 4); i < layer.length * 3 / 4; i++) {
+        for (var i = 0; i < layer.length; i++) {
             var hex = layer[i];
-            hex.state = (Math.random() > 0.5) ? true : false;
+            hex.state = (Math.random() > 0.8) ? true : false;
             hex.nextState = hex.state;
         }
     }
@@ -71,9 +71,9 @@ function drawHex(hexagon, color) {
     var center = hexagon.center;
     var sideLength = hexagon.sideLength * 28 / 30;
     if (hexagon.state === true) {
-        ctx.fillStyle = "yellow";
+        ctx.fillStyle = onColor;
     } else {
-        ctx.fillStyle = "black";
+        ctx.fillStyle = offColor;
     }
     if (typeof (color) !== "undefined") {
         console.log("drawing with", color);
@@ -151,7 +151,7 @@ function compute() {
 
 
 function draw() {
-    fillCanvas(backgroundColor);
+    fillCanvas(gridColor);
     for (var n = 0; n < layers.length; n++) {
         drawLayer(layers[n]);
     }
