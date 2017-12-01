@@ -16,8 +16,8 @@ You can try different rules and play with them. If you find interesting pattern 
 
 <h1>TODO</h1>
 <ul>
-  <li> Different coloring for young&old cells </li>
-  <li> Maybe interactive colors </li>
-  <li> More states for alive-ness of cells instead of 2(alive/dead) </li>
-  <li> Different rules for this thing </li>
+  <li><p style="color: gray"> Different coloring for young&old cells </p> </li>
+  <li><p style="color: gray"> Maybe interactive colors </p> </li>
+  <li><p style="color: gray"> More states for alive-ness of cells instead of 2(alive/dead) </p> </li>
+  <li><p style="color: gray"> Different rules for this thing </p> </li>
 </ul>
