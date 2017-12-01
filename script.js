@@ -86,7 +86,7 @@ canvas.addEventListener("click", function (evt) {
 draw();
 
 //this is used as both id of step interval and resume flag
-var resuming = setInterval(step, 30);
+var resuming = setInterval(step, 150);
 
 
 pauseButton.addEventListener("click", function () {
