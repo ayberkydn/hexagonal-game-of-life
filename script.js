@@ -29,6 +29,7 @@ var pauseButton = document.querySelector("#pauseButton");
 var nextButton = document.querySelector("#nextButton");
 var clearButton = document.querySelector("#clearButton");
 var randomButton = document.querySelector("#randomButton");
+var born0Button = document.querySelector("#born0");
 var gridColor = "blue";
 var onColor = "yellow";
 var offColor = "black";
@@ -106,4 +107,16 @@ clearButton.addEventListener("click", clearCells);
 
 randomButton.addEventListener("click", randomInitialize);
 
-console.log(layers);
+var seizureIsOK = false;
+
+checkboxes.born[0].addEventListener("click", function() {
+    if (!seizureIsOK) {
+        var confirmed = window.confirm("SEIZURE WARNING: Turning on this option may potentially trigger seizures for people with photosensitive epilepsy. Proceed only if it is OK.");
+        if (confirmed) {
+            seizureIsOK = true;
+        } else {
+            checkboxes.born[0].checked = false;
+        }
+    } 
+});
+
