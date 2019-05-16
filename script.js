@@ -5,7 +5,7 @@ var isMobile = navigator.userAgent.match(/Android/i) ||
     navigator.userAgent.match(/iPhone/i) ||
     navigator.userAgent.match(/iPad/)
 body.padding = 0;
-canvas.height = window.innerHeight * 10 / 17;
+canvas.height = window.innerHeight * 10 / 14;
 canvas.width = window.innerWidth;
 var ctx = canvas.getContext("2d");
 
@@ -33,7 +33,7 @@ var born0Button = document.querySelector("#born0");
 var gridColor = "blue";
 var onColor = "yellow";
 var offColor = "black";
-var sideLength = isMobile ? canvas.width / 100 : canvas.width / 300;
+var sideLength = isMobile ? canvas.width / 100 : canvas.width / 400;
 var layers = [];
 
 
