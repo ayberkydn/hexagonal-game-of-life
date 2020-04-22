@@ -1,6 +1,6 @@
 # hexagonal-game-of-life
 
-<a href="http://aybberk.github.io/hexagonal-game-of-life"> Conway's Game of Life with Hexagonal Grid on HTML canvas. </a>
+<a href="http://ayberkydn.github.io/hexagonal-game-of-life"> Conway's Game of Life with Hexagonal Grid on HTML canvas. </a>
 
 <h1>Features</h1>
 <ul>  
