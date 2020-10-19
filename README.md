@@ -15,7 +15,7 @@
 
 
 
-You can try different rules and play with them. If you find interesting pattern emerging rules, please inform me.
+You can try different rules and play with them. If you find interesting pattern emerging rules, let me know.
 
 <h1>TODO</h1>
 <ul>
