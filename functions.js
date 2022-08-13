@@ -6,7 +6,7 @@ function Point(x, y) {
 function distance(pointA, pointB) {
     var xDist = pointA.x - pointB.x;
     var yDist = pointA.y - pointB.y;
-    return (Math.pow(xDist, 2) + Math.pow(yDist, 2);
+    return Math.pow(xDist, 2) + Math.pow(yDist, 2);
 }
 
 function Hexagon(center, sideLength) {
