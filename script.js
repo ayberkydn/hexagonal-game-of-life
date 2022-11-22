@@ -111,7 +111,7 @@ var seizureIsOK = false;
 
 checkboxes.born[0].addEventListener("click", function() {
     if (!seizureIsOK) {
-        var confirmed = window.confirm("SEIZURE WARNING: Turning on this option may potentially trigger seizures for people with photosensitive epilepsy. Proceed only if it is OK.");
+        var confirmed = window.confirm("Turning on this option may potentially trigger seizures for people with photosensitive epilepsy.");
         if (confirmed) {
             seizureIsOK = true;
         } else {
