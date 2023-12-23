@@ -1,4 +1,5 @@
 "use strict";
+
 var canvas = document.querySelector("#myCanvas");
 var body = document.querySelector("body");
 var isMobile = navigator.userAgent.match(/Android/i) ||
